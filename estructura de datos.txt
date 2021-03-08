@@ -1,0 +1,181 @@
+collection BOT{
+    
+db.Chatbot.insert({
+  "groups" : {
+        "idGroups" : 1,
+        "idUsers":1,
+        "createdAt" : ISODate("2020-10-14T05:00:00.000Z"),
+        "nameGroups" : "admin"
+        },
+    "users" : {
+            "idUser" : 1,
+            "name" : "Jonas",
+            "lastame" : "Leon",
+            "idCard" : 123456,
+            "ProfilePhotoUrl":""  
+        },
+    "employee" : {
+            "idEmployeeOrigin":1,
+            "idUser" : 1,
+            "name" : "Jonas"
+        },
+    "departament" : {
+                "idDepartament":2, 
+                "nameDepartament":"Gerency"
+        },
+    "message" : {[
+            "idMessage":Number,
+            "messageContent" : "Hola Andres",
+            "idStatusMessage : Number,
+            "dateMessage" : ISODate("2020-10-14T05:00:00.000Z")
+        ]},
+    "idStatusMessage":{[
+        "idStatusMessage":number,
+        "nameStatusMessage":"string"
+    ]},
+    "date" : ISODate("2020-10-14T05:00:00.000Z"),
+    "urlFile":""
+       
+var BotSchema = Schema({
+
+	groups:[groupsSchema],
+	users:[usersSchema],
+	employee:[employeeSchema],
+	departament :[departamentSchema],
+	message:[messageSchema],
+	idStatusMessage:[idStatusMessageSchema],
+	date: Date
+});
+
+db.bots.insert( { "groups": {"idGroups":1,"idUseres":1,"createAt":ISODate("2020-10-14"), "nameGroups": "admin"}, "users":{ "idUser":1,"name":"Jonas","lastname":"Leon","idCard":1234556,"profilePhotoUrl":"" },"employee": {"idEmployeeOrigin":1,"idEmployeeOrigin":1,"idUser":1,"name":"Jonas"}, "departament":{"idDepartament":2,"nameDepartament":"gerency"}, "message":{"idMessage":1,"messageContent":"hola Andres","idStatusMessage":2,"datemessage":ISODate("2020-10-14")},"idStatusMessage":{"idStatusMessage":2, "nameStatusMessage":"read"}})
+
+
+
+Me enseñaste tanto y de todas las formas como se ve el dolor, que cuando vienes con ganas de quererme,
+automaticamente decirte no, es la mejor medicina para ese ardor en el corazon...
+
+
+
+ "groups" : {
+        "idGroups" : Number,
+        "idUsers":Number,
+        "createdAt" :  new Date,
+        "nameGroups" : String
+        },
+    "users" : {
+            "idUser" : Number,
+            "name" : String,
+            "lastame" : String,
+            "idCard" : Number,  
+        },
+    "employee" : {[
+            "idEmployeeOrigin":Number,
+            "idUser" : Number,
+            "name" : String
+        ]},
+    "departament" : {[
+                "idDepartament":Number, 
+                "nameDepartament":String
+        ]},
+    "message" : {[
+            "idMessage":Number,
+            "messageContent" : String,
+            "idStatusMessage : Number,
+            "dateMessage" : new Date
+        ]},
+    "idStatusMessage":{[
+        "idStatusMessage":number,
+        "nameStatusMessage":"string"
+    ]},
+    "date" : new Date,
+    
+
+
+db.Chat.insert({
+   
+    conversation":{ 
+            "idConversation:"Number",
+            "idMessage":Number,
+            "idUser":Number,
+            "departament" : String,
+                      
+    },
+    "message":{ 
+            "idMessage":Number,
+            "messageContent" : String,
+            "idStatusMessage : Number,
+            "dateMessage" : new Date
+    },
+
+     "users" : {
+            "idUser" : Number,
+            "name" : String,
+            "lastame" : String,
+            "idCard" : Number, 
+
+   
+
+
+
+
+
+var vendedor_2= {name: "antonio", sede:"miraflores, idcard:654321,}
+ var vendedor_2 ={name: "antonio", sede:"miraflores, idcard:654321,}
+
+
+
+
+
+
+
+     update : function (req,res) {
+        
+        //recoger los datos del usuario
+        var params = req.body;
+       
+        //valida los datos
+        try{
+            var validate_name = !validator.isEmpty(params.name);
+            var validate_lastname = !validator.isEmpty(params.lastname);
+            var validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
+            var validate_password = !validator.isEmpty(params.password);
+        
+        }catch(err){
+            return  res.status(200).send({
+                message:'faltan datos por enviar //update',
+                params
+             });
+        }
+        //eliminar propiedades innecesarias
+        delete params.password;
+
+        var usuarioId = req.usuario.sub;
+
+         console.log(usuarioId);
+        //buscar y actualizar documento
+        Usuario.findOneAndUpdate({ _id :usuarioId}, params, {new:true}, (err, usuarioUpdated) => {
+
+            if (err) {
+                return res.status(500).send({
+                    status:'error',
+                    message:'error al actualizar el usuario'
+                });
+            }
+            if (!usuarioUpdated) {
+                return res.status(200).send({
+                    status:'error',
+                    message:'no se ha actualizado el usuario'
+                });               
+            }
+                //devolver respuesta 
+            return res.status(200).send({
+                status:'success',
+                usuario: usuarioUpdated
+            });
+        });
+
+        return res.status(404).send({
+            status:'error',
+            message:'metodo de actualizacion de update //update'
+        });             
+    }
