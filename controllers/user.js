@@ -328,7 +328,76 @@ var controller = {
     },
 
   
+    uploadPhotoProfile3: function(req,res){
+        //configurar el modulo mutiparty (subida de fichero)
+
+        //recoger el fichero de la peticion
+        var photoProfile = 'Avatar no subido...';
+        
+
+        if(!req.file){
+
+            return res.status(404).send({
+                status:'error',
+                message: photoProfile
+                
+            });
+        }
+       // conseguir el nombre y la extension del archivo
+          // conseguir el nombre y la extension del archivo
+          var file_path= req.file.path; 
+          console.log(file_path);
+
+
+          var file_split = file_path.split('\\');
+          console.log(file_split);
+            
+           //nombre del archivo
+          var file_name= file_split[2];
+          console.log(file_name);
+          
+          //Extension del archivo
+          var ext_split = file_name.split('\.');
+          console.log(ext_split);
+
+          var file_ext = ext_split[1];
+          console.log(file_ext);
+   
+          //comprobar extension(solo imagenes)
+          if (file_ext != 'png' && file_ext !='jpg' && file_ext !='jpeg' && 
+          file_ext !='gif' && file_ext !='JPG' && file_ext !='JPEG'&& file_ext !='PNG'){
+              fs.unlink(file_path, () =>{
+                
+                return res.status(200).send({
+                    status:'error',
+                    message:'La Extension del Archivo no es valido',
+                    file: file_ext
+                    });
+            });
+
+        }else{
+       //sacar el id del usuario identificado
+            var userId= req.user.sub;
+       //buscar y actualizar documentos de la bd
+       User.findOneAndUpdate({ _id: userId}, {photoProfile : file_name}, {new:true}, (err, userUpdated)=>{
     
+        if(err || !userUpdated){
+
+            //devolver respuesta 
+            return res.status(500).send({
+                status:'error',
+                message:'Error al guardar el usuario',
+                    });
+                }
+            return res.status(200).send({
+                status:'succes',
+                user : userUpdated
+                });
+                
+            });
+      
+        }
+    },
 
 uploadPhotoProfile2: function(req,res){
 
@@ -350,13 +419,18 @@ uploadPhotoProfile2: function(req,res){
    
    // conseguir el nombre y la extension del archivo
    var file_path= req.file.path;
+   console.log(file_path);
+
    var file_split = file_path.split('/');
-   
+   console.log(file_split);
+
     //nombre del archivo
    var file_name= file_split[2];
+   console.log(file_name);
    
    //Extension del archivo
    var ext_split = file_name.split('.').pop();
+   console.log(ext_split );
    
 
    //comprobar extension(solo imagenes)
@@ -412,13 +486,16 @@ uploadPhotoProfile: function(req,res){
    
    // conseguir el nombre y la extension del archivo
    var file_path= req.files.photoProfile.path;
+   console.log(file_path);
    var file_split = file_path.split('/');
    
+   console.log(file_split);
     //nombre del archivo
    var file_name= file_split[2];
-   
+   console.log(file_name);
    //Extension del archivo
    var ext_split = file_name.split('.').pop();
+   console.log(ext_split);
    
 
    //comprobar extension(solo imagenes)
@@ -458,7 +535,9 @@ uploadPhotoProfile: function(req,res){
 
 photoProfile :function(req,res){
     var fileName = req.params.fileName;
+    
     var pathFile = './uploads/users/'+fileName;
+    
     //var pathFile = "'.\uploads\users\'"+fileName;
 
     

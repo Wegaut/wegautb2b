@@ -37,6 +37,8 @@ router.put('/PUT_USER/', md_auth.authenticated, UserController.update);
 router.delete('/DELETE_USER/:userId', md_auth.authenticated, UserController.deleteUsusario );
 router.post('/uploadPhotoProfile', [md_upload,md_auth.authenticated], UserController.uploadPhotoProfile);
 router.post('/uploadPhotoProfile2', [md_auth.authenticated,upload.single('photoProfile')], UserController.uploadPhotoProfile2);
+router.post('/uploadPhotoProfile3', [md_auth.authenticated,upload.single('photoProfile')], UserController.uploadPhotoProfile3);
+
 router.get('/photoProfile/:fileName', UserController.photoProfile);
 
 module.exports = router;
