@@ -327,7 +327,7 @@ var controller = {
         });
     },
 
-  
+  /*
     uploadPhotoProfile3: function(req,res){
         //configurar el modulo mutiparty (subida de fichero)
 
@@ -398,8 +398,8 @@ var controller = {
       
         }
     },
-
-uploadPhotoProfile2: function(req,res){
+*/
+uploadPhotoProfile: function(req,res){
 
 	  //configurar el modulo mutiparty (subida de fichero)
    //configurar el modulo mutiparty (subida de fichero)
@@ -430,7 +430,7 @@ uploadPhotoProfile2: function(req,res){
    
    //Extension del archivo
    var ext_split = file_name.split('.').pop();
-   console.log(ext_split );
+   console.log(ext_split);
    
 
    //comprobar extension(solo imagenes)
@@ -467,7 +467,7 @@ uploadPhotoProfile2: function(req,res){
     }
 },
 
-
+/*
 uploadPhotoProfile: function(req,res){
     //configurar el modulo mutiparty (subida de fichero)
 
@@ -531,8 +531,7 @@ uploadPhotoProfile: function(req,res){
   
     }
 },
-
-
+*/
 photoProfile :function(req,res){
     var fileName = req.params.fileName;
     
