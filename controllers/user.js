@@ -327,6 +327,99 @@ var controller = {
         });
     },
 
+
+uploadPhotoProfile: function(req,res){
+
+	  //configurar el modulo mutiparty (subida de fichero)
+   //configurar el modulo mutiparty (subida de fichero)
+
+    //recoger el fichero de la peticion
+    var photoProfile = 'Avatar no subido...';
+ 
+
+    if(!req.file){
+
+        return res.status(404).send({
+            status:'error',
+            message: photoProfile
+            
+        });
+    }
+   
+   // conseguir el nombre y la extension del archivo
+   var file_path= req.file.path;
+   console.log(file_path);
+
+   var file_split = file_path.split('/');
+   console.log(file_split);
+
+    //nombre del archivo
+   var file_name= file_split[2];
+   console.log(file_name);
+   
+   //Extension del archivo
+   var ext_split = file_name.split('.').pop();
+   console.log(ext_split);
+   
+
+   //comprobar extension(solo imagenes)
+    if (ext_split != 'png' && ext_split !='jpg' && ext_split !='jpeg' &&  ext_split !='gif' && ext_split !='JPG' && ext_split !='JPEG'&& ext_split !='PNG'){
+        fs.unlink(file_path, () =>{
+            return res.status(200).send({
+                status:'error',
+                message:'La Extension del Archivo no es valido',
+                file: file_ext
+                });
+        });
+
+    }else{
+   //sacar el id del usuario identificado
+        var userId= req.user.sub;
+   //buscar y actualizar documentos de la bd
+   User.findOneAndUpdate({ _id: userId}, {photoProfile : file_name}, {new:true}, (err, userUpdated)=>{
+        
+    if(err || !userUpdated){
+
+        //devolver respuesta 
+        return res.status(500).send({
+            status:'error',
+            message:'Error al guardar el usuario',
+                });
+            }
+        return res.status(200).send({
+            status:'succes',
+            user : userUpdated
+            });
+            
+        });
+  
+    }
+},
+
+photoProfile :function(req,res){
+    var fileName = req.params.fileName;
+    
+    var pathFile = './uploads/users/'+fileName;
+    
+    //var pathFile = "'.\uploads\users\'"+fileName;
+
+    
+
+    fs.exists(pathFile , (exists)=>{
+
+        if (exists) {
+            //envia el archivo resolviendo el path completo de donde esta ubicada el archivo
+            return res.sendFile(path.resolve(pathFile));
+        }else{
+            return res.status(404).send({
+                message:'la image no existe'
+                });
+            }
+        });
+    
+    }
+};
+
   /*
     uploadPhotoProfile3: function(req,res){
         //configurar el modulo mutiparty (subida de fichero)
@@ -399,73 +492,6 @@ var controller = {
         }
     },
 */
-uploadPhotoProfile: function(req,res){
-
-	  //configurar el modulo mutiparty (subida de fichero)
-   //configurar el modulo mutiparty (subida de fichero)
-
-    //recoger el fichero de la peticion
-    var photoProfile = 'Avatar no subido...';
- 
-
-    if(!req.file){
-
-        return res.status(404).send({
-            status:'error',
-            message: photoProfile
-            
-        });
-    }
-   
-   // conseguir el nombre y la extension del archivo
-   var file_path= req.file.path;
-   console.log(file_path);
-
-   var file_split = file_path.split('/');
-   console.log(file_split);
-
-    //nombre del archivo
-   var file_name= file_split[2];
-   console.log(file_name);
-   
-   //Extension del archivo
-   var ext_split = file_name.split('.').pop();
-   console.log(ext_split);
-   
-
-   //comprobar extension(solo imagenes)
-    if (ext_split != 'png' && ext_split !='jpg' && ext_split !='jpeg' &&  ext_split !='gif' && ext_split !='JPG' && ext_split !='JPEG'&& ext_split !='PNG'){
-        fs.unlink(file_path, () =>{
-            return res.status(200).send({
-                status:'error',
-                message:'La Extension del Archivo no es valido',
-                file: file_ext
-                });
-        });
-
-    }else{
-   //sacar el id del usuario identificado
-        var userId= req.user.sub;
-   //buscar y actualizar documentos de la bd
-   User.findOneAndUpdate({ _id: userId}, {photoProfile : file_name}, {new:true}, (err, userUpdated)=>{
-        
-    if(err || !userUpdated){
-
-        //devolver respuesta 
-        return res.status(500).send({
-            status:'error',
-            message:'Error al guardar el usuario',
-                });
-            }
-        return res.status(200).send({
-            status:'succes',
-            user : userUpdated
-            });
-            
-        });
-  
-    }
-},
 
 /*
 uploadPhotoProfile: function(req,res){
@@ -532,27 +558,5 @@ uploadPhotoProfile: function(req,res){
     }
 },
 */
-photoProfile :function(req,res){
-    var fileName = req.params.fileName;
-    
-    var pathFile = './uploads/users/'+fileName;
-    
-    //var pathFile = "'.\uploads\users\'"+fileName;
 
-    
-
-    fs.exists(pathFile , (exists)=>{
-
-        if (exists) {
-            //envia el archivo resolviendo el path completo de donde esta ubicada el archivo
-            return res.sendFile(path.resolve(pathFile));
-        }else{
-            return res.status(404).send({
-                message:'la image no existe'
-                });
-            }
-        });
-    
-    }
-};
 module.exports= controller;
