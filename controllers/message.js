@@ -20,7 +20,7 @@ var controller={
 
              /* COMENTARIO AGREGADO, BORRAR SI EXISTE PROBLEMAS*/
             .populate('user')
-            .populate('comments.user')
+            .populate('messages.user')
             /**/
             
             .exec((err,group)=>{
@@ -43,7 +43,7 @@ var controller={
                                 //validar datos
                     try{
                         var validate_messageContent = !validator.isEmpty(req.body.messageContent);  
-                        var validate_idStatusMessage = !validator.isEmpty(req.body.idStatusMessage);  
+                        //var validate_idStatusMessage = !validator.isEmpty(req.body.idStatusMessage);  
                         
                         //var validate_urlFile= ! validator.isEmpty(req.files.urlFile.path);
                     }catch(err){
@@ -52,12 +52,12 @@ var controller={
                         });
                     }
                     
-                if (validate_messageContent && validate_idStatusMessage /*&& validate_urlFile*/) {
+                if (validate_messageContent /*&& validate_idStatusMessage && validate_urlFile*/) {
 
                     var message={
                         user : req.user.sub,
                         messageContent: req.body.messageContent,
-                        idStatusMessage: req.body.idStatusMessage,
+                        //idStatusMessage: req.body.idStatusMessage,
                        // urlFile :req.files.urlFile.path,
                         
                     };
