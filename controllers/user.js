@@ -458,8 +458,8 @@ uploadPhotoProfile: function(req,res){
 
 photoProfile :function(req,res){
     var fileName = req.params.fileName;
-    //var pathFile = './uploads/users/'+fileName;
-    var pathFile = '.\uploads\users\'+fileName;
+    var pathFile = './uploads/users/'+fileName;
+    //var pathFile = "'.\uploads\users\'"+fileName;
 
     
 
