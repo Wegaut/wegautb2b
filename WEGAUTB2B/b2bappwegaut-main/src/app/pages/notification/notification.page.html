@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="blank">
+    <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/b2blogo.png" style="width: 50px;height: 25px;"/>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-header4" color="danger">Contacts</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button class="badge-button" routerLink="/fire-signin" routerDirection="forward">
+        <ion-icon name="person-circle-outline" color="light">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
+    <ion-buttons slot="end">
+      <ion-buttons slot="primary">
+        <ion-button ion-button icon-only 
+        [routerLink]="['/main/tabs/notification/modal-notification-detail', this.identity._id]">
+          <ion-icon  slot="end" color="danger" name="person-add"> </ion-icon> 
+        </ion-button>
+      </ion-buttons>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar color="blank">
+    <ion-grid fixed class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <!--ion-searchbar color="danger" placeholder="Find contact"   (ionChange)="buscar($event)" search-icon="search-outline">
+          </ion-searchbar-->
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+    <ion-content  padding>
+      <br>
+      <br>
+      <ion-card   *ngFor="let contacts of this.user">
+        <ion-item>
+          <ion-avatar slot="end">
+            <ion-icon name="trash-bin-outline"size="small" color="danger" (click)="deleteContact( this.identity._id, this.contacts._id)"></ion-icon>
+          </ion-avatar> 
+          <ion-label>
+           
+            <ion-badge color="light" class="ml-2">
+            {{contacts.updatedAt  | amLocale: 'es' | amDateFormat:'LL'}} 
+          </ion-badge>
+
+          <p> Contacto-Email</p>
+          
+            <span class="badge badge-light ml-2">
+               <h2> <strong> {{contacts.email}}</strong></h2> </span>
+               
+          </ion-label>
+        </ion-item>       
+      </ion-card>
+      <br>
+  </ion-content>
+
+  
+    <!--ion-content  class="ion-padding">
+      <ion-list>
+        
+          <ion-item *ngFor="let user of this.user">
+            <ion-avatar slot="start">
+              <ion-img [src]="user.photoProfile"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <-h2> <b> {{user.name}} && {{user.lastname}}</b></h2>
+              <h3>{{user.contacts.email}}</h3>
+              <p>acceder dando click</p>
+            </ion-label>
+          </ion-item>
+        
+      </ion-list>
+    </ion-content-->
+    
+  
+  
+
