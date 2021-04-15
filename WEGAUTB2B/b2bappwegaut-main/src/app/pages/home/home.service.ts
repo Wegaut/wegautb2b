@@ -11,7 +11,8 @@ import {Observable} from 'rxjs';
 export class HomeService {
 
   url = 'https://domappssuiteservices.com/Wegaut2020/WegautAppWebServices/';
-  urlEndpointb2b = 'https://wegautb2b.herokuapp.com/api/';
+  //urlEndpointb2b = 'https://wegautb2b.herokuapp.com/api/';
+  urlEndpointb2b = 'http://localhost:5000/api/';
 
 constructor(private http: HttpClient) { }
 

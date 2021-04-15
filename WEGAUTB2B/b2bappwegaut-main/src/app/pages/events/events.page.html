@@ -1,21 +1,26 @@
- <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title slot="start" class="main-header4" color="danger">TeamSpaces</ion-title>
-    <ion-buttons slot="primary">
+
+<ion-header >
+  <ion-toolbar color="blank">
+   
+    <ion-title class="main-header4" color="danger">TeamSpaces</ion-title>
+  
+    <ion-buttons slot="end">
+     
       <ion-button>
         <img src="../../assets/b2blogo.png"  style="width: 50px;height: 25px;"/>
       </ion-button>
+
       <ion-button color="danger"
         [routerLink]="['/main/tabs/events/modal-events-detail']">
         <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-button>
+
     </ion-buttons>
   
 
   </ion-toolbar>
-</ion-header>
 
-<ion-content class="background">
+
 <ion-toolbar color="blank">
   <ion-grid fixed class="ion-no-padding">
     <ion-row>
@@ -26,7 +31,9 @@
     </ion-row>  
   </ion-grid>
 </ion-toolbar>
+</ion-header>
 
+<ion-content>
 
 <ion-list>
   <ion-item *ngFor="let group of this.groups | filtro: textBuscar" [routerLink]="['/main/tabs/events/modal-chat-events', group._id]">
@@ -36,15 +43,14 @@
     </ion-avatar>
   
     <ion-label>
-
-      <ion-badge color="light" class="ml-2">
-        {{group.updatedAt | amLocale:'es' | amDateFormat:'LL'}}
-      </ion-badge>
+       <ion-badge color="light" class="ml-2">
+            <p><strong>Group Date:   {{group.updatedAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
+         </ion-badge>
 
       <h2> <b><!--a [routerLink]="['/main/tabs/events/modal-chat-events', group._id]"-->{{group.nameChat}}<!--/a--></b></h2>
       
       <span class="badge badge-danger ml-2">
-        Contacto: {{group.user.email}}
+        Contacto: {{group.email}}
       </span>
 
       <p>acceder dando click</p>
@@ -53,7 +59,6 @@
   </ion-item>
 </ion-list>
 </ion-content>
- 
 
 
 <!--ion-grid class="ion-no-padding">

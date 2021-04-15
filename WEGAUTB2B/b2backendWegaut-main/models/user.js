@@ -6,27 +6,50 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
 
 var ContactSchema = new Schema({
-      user :{ type:Schema.ObjectId, ref:'User'},
-      email: { type:String, trim:true}
+      user :{ type:Schema.Types.ObjectId, ref:'User'},
+      email: { type:String, trim:true},
+     // email: [{type: Schema.Types.ObjectId, ref:'User'}]
       },{ 	versionKey:false,
             timestamps:true,      
 });
-
-var Contact = mongoose.model('Contact', ContactSchema);
 
 var UserSchema = new Schema({
       name: { type:String,  trim:true, require:true},
       lastname: { type:String,  trim:true,  require:true},
       email: { type:String, unique:true, trim:true, require:true},
-      password: { type:String, trim:true, required: [true,'El Password debe ser mas de 6 caracteres']},
-      nPhone: { type:String, trim:true, required: [true,'El Numero debe insertar el umero de telefono']},
+      password: { type:String, trim:true, /*required: [true,'El Password debe ser mas de 6 caracteres']*/},
+      nPhone: { type:String, trim:true, /*required: [true,'El Numero debe insertar el umero de telefono']*/},
       photoProfile:{ type:String, default:'Image.png'},
       contacts:[ContactSchema] 
       },{ 	versionKey:false,
             timestamps:true,      
 });
 
+/*
+var MessageSchema =  new Schema({
 
+      messageContent:{ type:String },
+      //idStatusMessage:{ type:Boolean },
+      user :{ type: Schema.ObjectId, ref:'User'},
+      urlFile:{ type:String, default:'Image.png'},
+  },{ 	versionKey:false,
+          timestamps:true, 
+  });
+
+
+
+var GroupsSchema =  new Schema({
+      nameChat:{ type:String },
+      user :{type: Schema.Types.ObjectId, ref:'User'}, 
+      //Contact:[Contact],
+      //email: [{type: Schema.Types.ObjectId, ref:"Contact"}], 
+      contacts:{type: Schema.Types.ObjectId, ref:'Contact'},
+      messages:[MessageSchema] 
+  },{ 	versionKey:false,
+          timestamps:true,      
+  });
+
+*/
 //metodo para Eliminar password
 UserSchema.methods.toJSON=function () {
       var obj =this.toObject();
@@ -35,5 +58,13 @@ UserSchema.methods.toJSON=function () {
       return obj;
 };
 
-module.exports = mongoose.model('User', UserSchema);
+  //cargar grupos
+ // GroupsSchema.plugin(mongoosePaginate);
 
+  
+
+//var Message = mongoose.model('Message' ,MessageSchema);
+//var Group = mongoose.model('Group',  GroupsSchema);  
+
+var Contact = mongoose.model('Contact', ContactSchema);  
+module.exports = mongoose.model('User' ,UserSchema);

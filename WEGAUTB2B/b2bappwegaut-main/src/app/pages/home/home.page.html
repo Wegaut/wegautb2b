@@ -1,30 +1,23 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Schedule Events</ion-title>
-    <ion-buttons slot="end">
-      <ion-button  (click)="findUsers()" class="color-find">
-        <p>Find</p>
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
- -->
 
  <ion-header>
+
   <ion-toolbar color="blank">
+
+    <ion-title class="main-header4" color="danger">Chats</ion-title>
+
     <ion-buttons slot="end">
+
       <ion-button>
         <img src="../../assets/b2blogo.png"  style="width: 50px;height: 25px;">
       </ion-button>
-    </ion-buttons>
-    <ion-title class="main-header4" color="danger">Chats</ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-button class="badge-button" routerLink="/fire-signin" routerDirection="forward">
-        <ion-icon name="person-circle-outline" color="light">
-        </ion-icon>
+
+      <ion-button color="danger"
+      [routerLink]="['/main/tabs/home/modal-chat-home']">
+      <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-button>
-    </ion-buttons> -->
+
+    </ion-buttons>
+
   </ion-toolbar>
 
   <ion-toolbar color="blank">
@@ -55,11 +48,16 @@
        
         <ion-label>
           <ion-badge color="light" class="ml-2">
-            <p><strong>Message Date: {{message.updatedAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
+            <p><strong>Chat Date: {{message.updatedAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
          </ion-badge>
 
           <h2> <b><a [routerLink]="['/main/tabs/home/modal-home-detail', message._id]">{{message.nameChat}}</a></b></h2>
-         
+
+          <span class="badge badge-danger ml-2">
+            Contacto:  {{message.email}}
+          </span>
+
+
           <p>acceder dando click</p>
         </ion-label>
       </ion-item>

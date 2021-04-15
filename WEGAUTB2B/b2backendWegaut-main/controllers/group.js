@@ -38,13 +38,17 @@ var controller = {
             group.email = params.email;
             //group.urlFile=null;
 
-        //guardar topic
-            group.save((err, groupStored) =>{
+            group.save({$push:{email:
+                    {$each:[]}}},(err, groupStored) =>{
+
         //devolver una respuesta 
+        console.log(groupStored);
+        //console.log(groupStored);
                 if (err || !groupStored) {
+                    
                     return  res.status(404).send({
                         status:'error',
-                        message:'el Tema no se ha guardado'
+                        message:'Ya el tienes un chat con el usuario que quieres agregar'
                     });
                 }
                 return res.status(200).send({
@@ -74,7 +78,8 @@ var controller = {
         //indicar las opciones  de la paginacion
         var options ={
             sort:{ createdAt: -1},
-            populate:'user'
+            populate:'user',
+            populate:'user.contact'
         };
         //find message
 
@@ -111,6 +116,10 @@ var controller = {
             user:user
         })
         .sort([['createdAt', 'descending']])
+    
+      /*  .populate('contact')
+       Comentario agregado, para borrar
+      .populate('groups.contact')*/
         .exec((err,group)=> {
             if (err) {
                 return res.status(500).send({

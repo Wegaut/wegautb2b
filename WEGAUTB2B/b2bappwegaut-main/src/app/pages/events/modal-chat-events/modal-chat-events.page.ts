@@ -37,7 +37,7 @@ export class ModalChatEventsPage implements OnInit {
     this.identity=this.loginService.getIdentity();
     this.token=this.loginService.getToken();
     this.message = new MessageSchema();
-    this.group = new GroupsSchema("","","","","")
+    this.group = new GroupsSchema("","","","","");
     this.url=global.url;
 
  

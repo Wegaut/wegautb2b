@@ -88,7 +88,6 @@ export class NotificationPage implements OnInit {
           response=>{
             console.log(this.identity._id);
             console.log(this.token);
-            console.log(this.contacts._id);
             console.log(response);
             this.getContact();
           },

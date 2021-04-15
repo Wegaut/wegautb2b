@@ -77,6 +77,7 @@ this.token=this.loginservice.getToken();
       response=>{
         if(response.group){
           this.groups = response.group;
+            console.log(this.groups);
         }
       },
       error => {
@@ -93,6 +94,7 @@ this.token=this.loginservice.getToken();
         response =>{
           if(response.group){
             this.groups=response.group; 
+          
            // for ( const messageDetails in this.group.messages) { console.log(messageDetails)}; 
           /*
           this.group.messages.forEach(obj => {

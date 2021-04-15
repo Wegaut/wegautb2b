@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, IonSlides, NavController } from '@ionic/angular';
+import { getMaxListeners } from 'process';
 import { UserSchema } from 'src/app/models/user-model';
 import { LoginService } from './login.service';
 
@@ -157,10 +158,12 @@ export class LoginPage implements OnInit {
 
                     } else{
                       this.status="error";
+                      alert("Hubo un error");
                     }
                   },
                   error=> {
                       this.status="error";
+                      alert(error);
                       console.log(error);
                   });
                   
@@ -168,7 +171,8 @@ export class LoginPage implements OnInit {
           this.status="error";
         }
       },
-    
+   
+   
       error=> {
           this.status="error";
           console.log(error);

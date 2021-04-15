@@ -1,11 +1,11 @@
 'use strict'
 
-var mongoose = require('mongoose');
+var mongoose  = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const  ContactSchema = require('../models/user');
+const Contact = require('../models/user').Schema;
+const User    = require('../models/user').Schema;
 
 var Schema = mongoose.Schema;
-
 
 var MessageSchema =  new Schema({
 
@@ -20,19 +20,15 @@ var MessageSchema =  new Schema({
 
 var Message = mongoose.model('Message' ,MessageSchema);
 
-
 var GroupsSchema =  new Schema({
     nameChat:{ type:String },
-    user :{ type: Schema.ObjectId, ref:'User'}, 
-    email: { type:String, unique:true, trim:true, require:true},
-    //contact :{ type:Schema.ObjectId, ref:'Contact'}, 
-    messageContent:{ type:String },
+    user :{type: Schema.Types.ObjectId, ref:'User'}, 
+    //contact:[ContactSchema] 
+    email:[ { type:String, unique:true, trim:true, require:true}],
     messages:[MessageSchema] 
 },{ 	versionKey:false,
         timestamps:true,      
 });
-
-
 
 //cargar grupos
 GroupsSchema.plugin(mongoosePaginate);

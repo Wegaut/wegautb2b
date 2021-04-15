@@ -57,10 +57,12 @@ this.group = new GroupsSchema("","","","","")
         this._router.navigate(['/main/tabs/events'])
         if(response.group){
           this.status="success";
-          console.log("redireccion al login")
+     
           this._router.navigate(['/login']);
-          this.group=response.group;
-          console.log("redireccion al events")
+          this.group=response.group;  
+          console.log(this.group.messages);
+
+        
           this._router.navigate(['/main/tabs/events'])
         }else{
           this.status="error";

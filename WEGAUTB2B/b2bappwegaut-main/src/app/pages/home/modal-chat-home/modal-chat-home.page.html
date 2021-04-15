@@ -1,36 +1,78 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>modal-chat-home</ion-title>
+    <ion-title slot="start" class="main-header4" color="danger">Create Chat</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <img src="../../assets/b2blogo.png"  style="width: 50px;height: 25px;"/>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<br>
+<br>
+
 <ion-content>
 
+  
+<ion-grid fixed>
+  <form (ngSubmit)="addGroup(fAddGroup)" #fAddGroup="ngForm">
+    <ion-row>
+        <ion-col>
+            <ion-list>
+              <ion-item class="roundedInput8px margin-bottom-15 ">
+                <ion-label>
+                  <ion-icon color="medium" name="mail-outline"></ion-icon>
+                </ion-label>
+                <ion-input  name="nameChat" 
+                placeholder="Nombre del Grupo"
+                type="text"
+                [(ngModel)]="group.nameChat"
+                required></ion-input>
+              </ion-item>
+  
+  
+              <ion-item class="roundedInput8px margin-bottom-15 ">
+                <ion-label>
+                  <ion-icon color="medium" name="person"></ion-icon>
+                </ion-label>
+                <ion-input name="contact"
+                placeholder="Email del Contacto"
+                type="text"
+                [(ngModel)]="group.email"
+                required></ion-input>
+                </ion-item>
+  
+              </ion-list>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row>
+        <ion-col>
+            <ion-button type="submit"
+                        color="primary"
+                        shape="round"
+                        >
+                Crear Grupo
+            </ion-button>
+        </ion-col>
+    </ion-row>
+    
+    </form>
+  </ion-grid>
+  
+  
+  
+      <ion-list>
+        <!-- Refresher -->
+        <ion-item *ngFor="let group of groups" (click)="openChat(chat)">
+          <ion-avatar slot="start">
+          </ion-avatar>
+          <ion-label>
+      
+          </ion-label>
+        </ion-item>
+      
+    </ion-list>
 
 </ion-content>
-  <ion-list class="app-mensajes" id="app-mensajes">
-    <ion-list class="text-left">
-      <ion-badge class="text-left" color="primary" class="ml-2">Fernando</ion-badge>
-      <p> Esto es otro mensaje</p>
-    </ion-list>  
-
-        <ion-badge color="success" class="ml-2">Maria</ion-badge>
-      <p> Esto es otro mensajeh</p> 
-  
-
-  <ion-footer padding>
-    <form>
-    <ion-item>
-      <ion-textarea
-      type="text" 
-      name="mensaje" 
-      [(ngModel)]="mensaje"
-      class="form-control"
-      (keyup.enter)="enviar_mensaje()"
-      placeholder="Escribir mensaje"
-      required></ion-textarea>
-      <ion-button type="submit" color="success" expand="block" class="padding"> Enviar</ion-button>
-    </ion-item>
-  </form>
-  </ion-footer>
-
