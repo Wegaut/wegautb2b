@@ -1,1 +1,6 @@
 node_modules/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/wegautb2b.iml
