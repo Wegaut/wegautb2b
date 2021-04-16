@@ -1,40 +1,48 @@
 'use strict'
 
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const  ContactSchema = require('../models/user');
+const ContactSchema = require('../models/user');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-
-var MessageSchema =  new Schema({
-
-    messageContent:{ type:String },
+const MessageSchema = new Schema({
+    messageContent: {type: String},
     //idStatusMessage:{ type:Boolean },
-    user :{ type: Schema.ObjectId, ref:'User'},
-    urlFile:{ type:String, default:'Image.png'},
-},{ 	versionKey:false,
-        timestamps:true, 
-
+    user: {type: Schema.ObjectId, ref: 'User'},
+    urlFile: {type: String, default: 'Image.png'},
+}, {
+    versionKey: false,
+    timestamps: true,
 });
 
-var Message = mongoose.model('Message' ,MessageSchema);
+const GroupMemberSchema = new Schema({
+    name: {type: String},
+    email: {type: String, trim: true}
+}, {
+    versionKey: false,
+    timestamps: true,
+});
 
-
-var GroupsSchema =  new Schema({
-    nameChat:{ type:String },
-    user :{ type: Schema.ObjectId, ref:'User'}, 
-    email: { type:String, unique:true, trim:true, require:true},
+const GroupsSchema = new Schema({
+    // TODO: Modify this schema according to business needs
+    nameChat: {type: String},
+    // user: {type: Schema.ObjectId, ref: 'User'},
+    // email: {type: String, unique: true, trim: true, require: true},
     //contact :{ type:Schema.ObjectId, ref:'Contact'}, 
-    messageContent:{ type:String },
-    messages:[MessageSchema] 
-},{ 	versionKey:false,
-        timestamps:true,      
+    // messageContent: {type: String},
+    messages: [MessageSchema],
+    groupMembers: [GroupMemberSchema]
+}, {
+    versionKey: false,
+    timestamps: true,
 });
 
-
+// Loading schemas
+const message = mongoose.model('Message', MessageSchema);
+const groupMember = mongoose.model('GroupMember', GroupMemberSchema);
 
 //cargar grupos
 GroupsSchema.plugin(mongoosePaginate);
 
-module.exports  = mongoose.model('Group',  GroupsSchema);
+module.exports = mongoose.model('Group', GroupsSchema);
