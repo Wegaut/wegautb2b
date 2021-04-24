@@ -77,7 +77,7 @@ this.token=this.loginservice.getToken();
         for(let tGroup in groups){
           let data=groups[tGroup];
           let groupMembers=data["groupMembers"];
-            for( let gMenbers in groupMembers.length){
+            for( let gMenbers in groupMembers){
                 data=groupMembers[gMenbers]
                 this.email=data["email"];
                 this.name=data["name"];

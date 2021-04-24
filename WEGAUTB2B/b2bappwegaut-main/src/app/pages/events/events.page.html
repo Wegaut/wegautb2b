@@ -44,12 +44,12 @@
   
     <ion-label>
        <ion-badge color="light" class="ml-2">
-            <p><strong>Group Date: {{group.createdAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
+            <p><strong>Group Date:   {{group.createdAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
          </ion-badge>
 
       <h2> <b><!--a [routerLink]="['/main/tabs/events/modal-chat-events', group._id]"-->{{group.nameChat}}<!--/a--></b></h2>
       
-      <span class="badge badge-danger ml-2 grid-container">
+      <span class="badge badge-danger ml-2 grid-container" >
         Contacto: {{this.email}}
       </span>
 
