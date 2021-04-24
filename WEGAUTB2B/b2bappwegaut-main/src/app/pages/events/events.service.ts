@@ -1,6 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { EventComments, EventDetails,EventSheduleDetails, SelectedEventDetails} from 'src/app/interfaces/event';
 import { EventModel, EventPhoto } from 'src/app/models/event-model';
 import { EventLike, ScheduleUserEvent } from 'src/app/models/schedule-user-event-models';
@@ -8,6 +9,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { UserSponsor } from 'src/app/interfaces/userSponsor';
 import { UserComment } from 'src/app/models/user-model';
 import {GroupsSchema} from '../../models/group';
+import {GroupsSchema2} from '../../models/groupSchema';
 
 
 @Injectable({
@@ -41,8 +43,22 @@ export class EventsService {
   getGroupAll(token):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json')
                                    .set('Authorization', token);
-   return this.http.get(this.urlEndpointb2b+'GET_GROUPS', {headers:headers});
+   return this.http.get<GroupsSchema2>(this.urlEndpointb2b+'GET_GROUPS', {headers:headers})
+                                .pipe(
+                                  map( res =>{
+                                    return res.group})
+                                      );
   }
+ 
+  /*getGroupAll2(token){
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+                                   .set('Authorization', token);
+   return this.http.get<GroupsSchema2>(this.urlEndpointb2b+'GET_GROUPS', {headers:headers})
+                                      .pipe(
+                                      map( res =>{
+                                        return res.group})
+                                      );
+  }*/
  
   getGroupUser(groupId,token):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json')

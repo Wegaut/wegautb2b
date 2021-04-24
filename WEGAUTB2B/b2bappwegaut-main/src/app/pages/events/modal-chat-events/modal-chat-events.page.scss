@@ -1,24 +1,64 @@
+.d-flex{
+    justify-content: flex-end;
+    justify-items: flex-end;
+    text-align: end;
+    text-content:end;
+    display: flex;
+}
+
+.d-flex .float{
+    justify-content: flex-end;
+    justify-items: flex-end;
+    text-align: end;
+    text-content:end;
+    position: absolute;
+    display: flex;
+}
+
 p.comment-left{
     overflow: hidden;
-    margin-left:400px;
+    position: relative;
+    text-align: end;
+    text-content:end;
 }
 
-ion-list.comment-left{
+.comment-1{
+    color:aliceblue;
+    background:rgb(176, 167, 184);
+    border:solid 2px line blue;
     overflow: hidden;
-    margin-left:400px; 
+    display: end;
+    width:50%;
+    height:21%;
+    border-radius:20px;
+    position:relative;
+    overflow: hidden;
+    position: relative;
+    text-align: end;
+    text-content:end;
 }
 
-ion-badge.comment-left {
+.comment-2{
+    color:aliceblue;
+    background:rgb(234, 44, 79);
+    border:solid 2px line blue;
     overflow: hidden;
-    margin-left:400px;
+    display: end;
+    width:50%;
+    height:20%;
+    border-radius:20px;
+    position:relative;
+    overflow: hidden;
+    position: relative;
+    text-align: end;
+    text-content:end;
 }
 
-ion-avatar.float-left{
+ion-avatar.float{
+    position: absolute;
     overflow: hidden;
-    margin-left:400px;
+    border-radius:20px;
+    display: flex;  
+    z-index: 1000;
 }
 
-small.left{
-    overflow: hidden;
-    margin-left:400px;   
-}

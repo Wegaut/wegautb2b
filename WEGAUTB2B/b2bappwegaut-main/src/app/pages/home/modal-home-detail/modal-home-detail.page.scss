@@ -1,41 +1,64 @@
-
-body{
-    background: #fc00ff;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #00dbde, #fc00ff);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+.d-flex{
+  justify-content: flex-end;
+  justify-items: flex-end;
+  text-align: end;
+  text-content:end;
+  display: flex;
 }
 
-
-/*ion-list{
-  font-family: Helvetica;
-  font-size: 18px;
-  font-weight: 50%;
-  background: rgba(190, 187, 187, 0.227);
-  overflow: hidden;
-  border-radius: 50px;
-}
-*/p.comment-left{
-  overflow: hidden;
-  margin-left:400px;
+.d-flex .float{
+  justify-content: flex-end;
+  justify-items: flex-end;
+  text-align: end;
+  text-content:end;
+  position: absolute;
+  display: flex;
 }
 
-ion-list.comment-left{
+p.comment-left{
   overflow: hidden;
-  margin-left:400px; 
+  position: relative;
+  text-align: end;
+  text-content:end;
 }
 
-ion-badge.comment-left {
+.comment-1{
+  color:aliceblue;
+  background:rgb(176, 167, 184);
+  border:solid 2px line blue;
   overflow: hidden;
-  margin-left:400px;
+  display: end;
+  width:50%;
+  height:21%;
+  border-radius:20px;
+  position:relative;
+  overflow: hidden;
+  position: relative;
+  text-align: end;
+  text-content:end;
 }
 
-ion-avatar.float-left{
+.comment-2{
+  color:aliceblue;
+  background:rgb(234, 44, 79);
+  border:solid 2px line blue;
   overflow: hidden;
-  margin-left:400px;
+  display: end;
+  width:50%;
+  height:20%;
+  border-radius:20px;
+  position:relative;
+  overflow: hidden;
+  position: relative;
+  text-align: end;
+  text-content:end;
+  margin-left:auto;
 }
 
-small.left{
+ion-avatar.float{
+  position: absolute;
   overflow: hidden;
-  margin-left:400px;   
+  border-radius:20px;
+  display: flex;  
+  z-index: 1000;
 }

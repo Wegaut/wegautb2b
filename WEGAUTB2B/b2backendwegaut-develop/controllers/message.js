@@ -17,12 +17,7 @@ var controller={
 
         //find por id del topic
             Group.findById(groupId)
-
-             /* COMENTARIO AGREGADO, BORRAR SI EXISTE PROBLEMAS*/
-            .populate('user')
-            .populate('messages.user')
-            /**/
-            
+           
             .exec((err,group)=>{
                 if(err){
                     return res.status(500).send({

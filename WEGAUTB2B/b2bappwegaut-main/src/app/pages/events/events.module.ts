@@ -14,6 +14,7 @@ import { ModalNewEventPageModule } from './modal-new-event/modal-new-event.modul
 import { ModalNewEventPage } from './modal-new-event/modal-new-event.page';
 import { PipesModule } from '../../pipes/pipes.module';
 import { Camera, CameraOptions} from '@ionic-native/camera/ngx'
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { Camera, CameraOptions} from '@ionic-native/camera/ngx'
     FormsModule,
     IonicModule,
     PipesModule,
+    HttpClientModule,
     
   
     EventsPageRoutingModule,

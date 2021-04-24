@@ -40,18 +40,16 @@ export class ModalHomeDetailPage implements OnInit {
     this.identity=this.loginService.getIdentity();
     this.token=this.loginService.getToken();
     this.message = new MessageSchema();
-    this.group = new GroupsSchema("","","","","")
+    this.group = new GroupsSchema("","","","","","")
     this.url=global.url;
 
  
   }
   ngOnInit() {
     this.getGroup();
-    console.log(this.identity._id);
-    console.log("metodo identity");
   }
 
- getGroup(){
+  getGroup(){
     this._route.params.subscribe(params =>{
       let id = params['id'];
 
@@ -59,9 +57,8 @@ export class ModalHomeDetailPage implements OnInit {
         response =>{
           if(response.group){
             this.group=response.group; 
-            console.log(response.group.user._id);
-            console.log("metodo id");
-            console.log(response.group.user.photoProfile);
+            console.log(this.group);
+         
             
            // for ( const messageDetails in this.group.messages) { console.log(messageDetails)}; 
           /*
@@ -74,7 +71,7 @@ export class ModalHomeDetailPage implements OnInit {
           });
 */
           }else{
-            this._router.navigate(['/main/tabs/home']);
+            this._router.navigate(['/main/tabs/events']);
           }
         },
         error =>{
@@ -86,31 +83,29 @@ export class ModalHomeDetailPage implements OnInit {
 
 
 addMesssage(form){
- this.homeService.addMessage(this.token, this.message, this.group._id).subscribe(
-   response=>{
-     console.log(this.token);
-     console.log(this.message);
-     console.log(this.group._id);
-    if(!response.group){;
-      this.status='error'
-      console.log(response.group);
-    }else {
-      this.status ="success";
-      this.group = response.group;
-      form.reset();
-      console.log(this.group.messages);
+  this.homeService.addMessage(this.token, this.message, this.group._id).subscribe(
+    response=>{
+      console.log(this.token);
+      console.log(this.message);
+      console.log(this.group._id);
+     if(!response.group){;
+       this.status='error'
+       console.log(response.group);
+     }else {
+       this.status ="success";
+       this.group = response.group;
+       form.reset();
+       this.getGroup();
+
+       console.log(this.group.messages);
+     }
+    },
+    error =>{
+      this.status ='error';
+     console.log(error);
     }
-   },
-   error =>{
-     this.status ='error';
-    console.log(error);
-   }
- );
-}
+  );
+ }
+ 
 
-
-/*const foundIndex = this.ordersList.findIndex(({ orderNumber }) => orderNumber === orderSelected.orderNumber);
-    this.ordersList = this.ordersList.filter((_, index) => index !== foundIndex);
-    console.log(this.ordersList);
-*/
 }

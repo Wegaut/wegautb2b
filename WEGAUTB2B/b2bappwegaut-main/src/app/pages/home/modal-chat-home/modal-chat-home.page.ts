@@ -37,7 +37,7 @@ export class ModalChatHomePage implements OnInit {
 
 this.identity=this.loginservice.getIdentity();
 this.token=this.loginservice.getToken();
-this.group = new GroupsSchema("","","","","")
+this.group = new GroupsSchema("","","","","","")
               }
 
   ngOnInit() {

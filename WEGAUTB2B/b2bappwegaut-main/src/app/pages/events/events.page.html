@@ -36,7 +36,7 @@
 <ion-content>
 
 <ion-list>
-  <ion-item *ngFor="let group of this.groups | filtro: textBuscar" [routerLink]="['/main/tabs/events/modal-chat-events', group._id]">
+  <ion-item *ngFor="let group of this.group | filtro: textBuscar" [routerLink]="['/main/tabs/events/modal-chat-events', group._id]">
   
     <ion-avatar slot="end">
       <ion-icon name="trash-bin-outline"size="small" color="danger" (click)="deleteGroup(group._id)"></ion-icon>
@@ -44,21 +44,23 @@
   
     <ion-label>
        <ion-badge color="light" class="ml-2">
-            <p><strong>Group Date:   {{group.updatedAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
+            <p><strong>Group Date: {{group.createdAt | amLocale:'es' | amDateFormat:'LL'}}</strong></p>
          </ion-badge>
 
       <h2> <b><!--a [routerLink]="['/main/tabs/events/modal-chat-events', group._id]"-->{{group.nameChat}}<!--/a--></b></h2>
       
-      <span class="badge badge-danger ml-2">
-        Contacto: {{group.email}}
+      <span class="badge badge-danger ml-2 grid-container">
+        Contacto: {{this.email}}
       </span>
 
-      <p>acceder dando click</p>
+      <p>acceder dando click  {{group._id}}</p>
 
     </ion-label>
   </ion-item>
 </ion-list>
 </ion-content>
+
+
 
 
 <!--ion-grid class="ion-no-padding">

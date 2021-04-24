@@ -7,6 +7,7 @@ constructor(
        public nameChat:string,
        public user:any,
        public messageContent:any,
-       public messages:any,    
+       public messages:any,  
+       public groupMenbers:any  
          ){}
 }

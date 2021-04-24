@@ -31,39 +31,36 @@
       </ion-col>
 </ion-row>
 
-<ion-list class="justify-content-end" *ngFor="let message of this.group.messages">
+<ion-list *ngFor="let message of this.group.messages">
+  
+  <div class="container1">
+    <div class="col-6 comment-1" *ngIf="this.identity._id != message.user._id">
+    <ion-avatar class="mr-4 float"  *ngIf="this.identity._id != message.user._id">
+      <img src="{{url+'photoProfile/'+message.user.photoProfile}}"  class="avatar_nav"/> 
+    </ion-avatar>
+    <br>
+    <small class="col-6 msg comment-item">{{message.createdAt| amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}}</small> 
+      <br>
+      <small class="col-6 msg comment-item">{{message.user.name}} {{message.user.lastname}}</small>
+      <p class="col-6 comment" *ngIf="this.identity._id != message.user._id"><strong>{{message.messageContent}}</strong></p>
+    </div>
+  </div>
 
+    <div class="d-flex">
+      <div class="col-6 comment-2"  *ngIf="this.identity._id == message.user._id">
+        <ion-avatar class="float" *ngIf="message.user.photoProfile && this.identity._id == message.user._id ">
+          <img src="{{url+'photoProfile/'+message.user.photoProfile}}"  class="avatar_nav d-flex justify-content-end"/> 
+        </ion-avatar>
+        <br>
+        <small class="col-6 msg comment-item">{{message.createdAt| amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}}</small> 
+        <br>
+        <small class="col-6 msg comment-item">{{message.user.name}} {{message.user.lastname}}</small>
+          <p class="col-6 comment-item" *ngIf="this.identity._id == message.user._id"><strong>{{message.messageContent}}</strong></p>
+        </div>    
+    </div>
 
-  <small class="left" *ngIf="this.identity._id == message.user._id">
-    {{message.createdAt| amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}}</small>
-
-  <ion-avatar class="mr-4 float-right rigth"  *ngIf="this.identity._id != message.user._id">
-  <img src="{{url+'photoProfile/'+message.user.photoProfile}}"  class="avatar_nav"/> 
-  </ion-avatar>
-
-  <ion-badge color="success" class="col-6 comment-rigth" *ngIf="this.identity._id != message.user._id">
-    <small class="col-6 msg comment-item">{{message.user.name}} {{message.user.lastname}}</small> 
-    </ion-badge>
-
-  <p class="col-6 comment-rigth" *ngIf="this.identity._id != message.user._id"><strong>{{message.messageContent}}</strong></p>
-
-
-<small class="rigth" *ngIf="this.identity._id != message.user._id">
-{{message.createdAt | amLocale:'en' | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}}</small>
-
-<ion-avatar class="mr-4 float-left" *ngIf="message.user.photoProfile && this.identity._id == message.user._id ">
-<img src="{{url+'photoProfile/'+message.user.photoProfile}}"  class="avatar_nav"/> 
-</ion-avatar>
-
-<ion-badge color="primary" class="col-6 comment-left"  *ngIf="this.identity._id == message.user._id">
-<small class="col-6 msg comment-item">{{message.user.name}} {{message.user.lastname}} </small> 
-</ion-badge>
-
-<p class="col-6 comment-left" *ngIf="this.identity._id == message.user._id"><strong>{{message.messageContent}}</strong></p>
-<hr>
 
 </ion-list>
-
 
 
 

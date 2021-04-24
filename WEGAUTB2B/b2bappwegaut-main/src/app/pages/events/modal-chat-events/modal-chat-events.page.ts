@@ -22,7 +22,7 @@ export class ModalChatEventsPage implements OnInit {
   public token;
   public status;
   public user : UserSchema[];
-  public group: GroupsSchema;
+  public group: any= [];
   public message: MessageSchema;
   public messages;
   public url;
@@ -37,7 +37,7 @@ export class ModalChatEventsPage implements OnInit {
     this.identity=this.loginService.getIdentity();
     this.token=this.loginService.getToken();
     this.message = new MessageSchema();
-    this.group = new GroupsSchema("","","","","");
+   // this.group = new GroupsSchema("","","","","","");
     this.url=global.url;
 
  
@@ -55,6 +55,7 @@ export class ModalChatEventsPage implements OnInit {
         response =>{
           if(response.group){
             this.group=response.group; 
+            console.log(this.group);
          
             
            // for ( const messageDetails in this.group.messages) { console.log(messageDetails)}; 

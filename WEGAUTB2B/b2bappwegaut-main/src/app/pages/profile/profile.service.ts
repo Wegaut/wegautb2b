@@ -11,9 +11,9 @@ export class ProfileService {
   public identity;
   public token; 
 
-  //url = 'https://domappssuiteservices.com/Wegaut2020/WegautAppWebServices/';
 
-  urlEndpointb2b = 'https://wegautb2b.herokuapp.com/api/';
+  //urlEndpointb2b = 'https://wegautb2b.herokuapp.com/api/';
+  urlEndpointb2b = 'http://localhost:5000/api/';
   constructor(private http: HttpClient,
               private fileTransfer: FileTransfer) { }
 
@@ -22,7 +22,7 @@ export class ProfileService {
     //let params1 = new HttpParams().set('userId', userId)
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                     .set('Authorization', token);
-    return this.http.get(this.urlEndpointb2b+'GET_CONTACTS/'+userId, {headers:headers});
+    return this.http.get(this.urlEndpointb2b+'GET_USER/'+userId, {headers:headers});
 
   }
 

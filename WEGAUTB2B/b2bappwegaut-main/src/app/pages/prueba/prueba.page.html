@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>prueba</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h1>Usuarios</h1>
+ <hr>
+
+  <div class="row">
+    <div clas="col">
+      <div class="row header">
+        <table class=" table table-light">
+       <thead>
+         <tr>
+           <th> Avatar </th>&nbsp;
+           <th> Nombre Completo </th>&nbsp;
+           <th> Email </th> 
+         </tr>
+       </thead>
+       <hr>
+       <tbody>
+         <tr *ngFor="let group of this.group">
+           <td> {{group.nameChat}} </td>&nbsp;
+           <td> {{group.messages[0].messageContent}}</td>&nbsp;
+           <td> {{group.groupMembers[1].email}} {{group.groupMembers[1].name}} </td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</ion-content>

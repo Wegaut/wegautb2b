@@ -16,6 +16,7 @@ import {GroupsSchema} from '../../models/group';
 import { UserSchema } from 'src/app/models/user-model';
 import { LoginService } from '../login/login.service';
 import { EventsService } from './events.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-events',
@@ -32,8 +33,10 @@ export class EventsPage implements OnInit {
   public token;
   public status;
   public search;
-  public groups: GroupsSchema;
-  public group;
+  public email;
+  public name;
+
+  public group: any= [];
   public textBuscar="";
 
   constructor(private eventService: EventsService,
@@ -42,14 +45,13 @@ export class EventsPage implements OnInit {
   //private elementRef: ElementRef,
   //private storage: Storage,
   private navCtrl: NavController,
-    private alertController : AlertController,
+  private alertController : AlertController,
   private _router :Router,
   private _route :ActivatedRoute
   ) {
 
 this.identity=this.loginservice.getIdentity();
 this.token=this.loginservice.getToken();
-this.group = new GroupsSchema("","","","","")
               }
 
             
@@ -67,20 +69,31 @@ this.group = new GroupsSchema("","","","","")
 
   getGroupAll(){
    // var groupId = this.identity._id;
-    this.eventService.getGroupAll(this.token).subscribe(
-      response=>{
-        if(response.group){
-          this.groups  = response.group;
-          console.log(this.groups);
-          console.log("this getGroupAll");
-        }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  }
-
+   this.eventService.getGroupAll(this.token)
+   .subscribe(res => {
+     if(res){
+       this.group=res;
+       let groups=this.group;
+        for(let tGroup in groups){
+          let data=groups[tGroup];
+          let groupMembers=data["groupMembers"];
+            for( let gMenbers in groupMembers.length){
+                data=groupMembers[gMenbers]
+                this.email=data["email"];
+                this.name=data["name"];
+                console.log(this.email);
+          }
+       }
+       console.log(this.email);
+        //menbers = menbers.forEach(menbers => menbers.length);
+        //let resultdo=menbers.filter(menbers => menbers.length);
+     }
+   },
+   error => {
+     console.log(error)
+   }
+ )
+}                
   
   buscar(event){
     //console.log(event);
@@ -93,8 +106,8 @@ this.group = new GroupsSchema("","","","","")
        response=>{
          console.log(response);
          if(response.groups){
-           this.groups   = response.groups;
-           console.log(this.groups);
+           this.group   = response.groups;
+           console.log(this.group);
            console.log("this getGroupSearch");
          }
        },

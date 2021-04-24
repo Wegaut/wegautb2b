@@ -6,13 +6,15 @@ var Contact = require('../models/user');
 
 var controller={
 
+           
+    
+
     addContact: function (req, res) {
-        console.log("qlq estas entrando aqui?? ");
+
         var userId = req.params.userId;
-      //  console.log(userId);
-       // console.log(req.body.email);
-      //  this.verifyContactBeforeAdd(req.body.email);
+
         User.findById(userId).exec((err, user)=>{
+            
             if(err){
                 return  res.status(500).send({
                     status:'error',
@@ -71,32 +73,6 @@ var controller={
      }); 
 
 },
-        verifyContactBeforeAdd: function (req, res){
-           // console.log(req.body.email);
-           // console.log(req.params.email);
-            User.findOne({email: req.params.email}, function(err, email) {
-               // console.log(result);
-               console.log(email);
-                if(err){
-                    return  res.status(500).send({
-                        status:'error',
-                        message:'el usuario no esta en la plataforma y no lo puedo agregar a mis contactos', 
-                    });
-                }
-                if(!email){
-                    return  res.status(404).send({
-                        status:'error',
-                        message:'el usuario no esta en la plataforma y no lo puedo agregar a mis contactos', 
-                    });
-                }else{
-                    return res.status(200).send({
-                        status:'success',
-                        email
-                    });
-                }
-            });
-        },
-  
 
     deleteContac: function (req, res) {
         //Sacar el id del grupo y el comentario y del comentario a borrar
