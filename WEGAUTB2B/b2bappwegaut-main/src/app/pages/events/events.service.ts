@@ -85,6 +85,12 @@ export class EventsService {
     return this.http.get(this.urlEndpointb2b+'GET_GROUP/'+id, {headers:headers});
   }
 
+  prueba(token,group):Observable<any> {
+    let params =JSON.stringify(group);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                      .set('Authorization', token);
+    return this.http.post(this.urlEndpointb2b+'prueba', params, {headers:headers});
+    }
  
 
 

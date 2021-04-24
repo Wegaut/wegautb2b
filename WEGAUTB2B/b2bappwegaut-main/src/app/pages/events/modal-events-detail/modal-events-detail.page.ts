@@ -74,5 +74,13 @@ this.group = new GroupsSchema("","","","","","")
       }
     )
   }
+  }
 
-}
+  /*addGroup(fAddGroup){
+    this.eventService.prueba(this.token,this.group).subscribe(
+      response=>{
+        console.log(response);
+      }
+
+    )}
+}*/

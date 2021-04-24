@@ -15,7 +15,7 @@ const controller = {
     },
 
     saveGroup: function (req, res) {
-
+        
         const errorMessageObj = {};
         const groupMembers = [];
 

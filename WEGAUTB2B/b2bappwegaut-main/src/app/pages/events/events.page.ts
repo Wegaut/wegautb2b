@@ -16,7 +16,7 @@ import {GroupsSchema} from '../../models/group';
 import { UserSchema } from 'src/app/models/user-model';
 import { LoginService } from '../login/login.service';
 import { EventsService } from './events.service';
-import { Console } from 'console';
+
 
 @Component({
   selector: 'app-events',
@@ -86,7 +86,7 @@ this.token=this.loginservice.getToken();
        }
        console.log(this.email);
         //menbers = menbers.forEach(menbers => menbers.length);
-        //let resultdo=menbers.filter(menbers => menbers.length);
+        //let resultdo=menbers.filter(menb'ers => menbers.length);
      }
    },
    error => {

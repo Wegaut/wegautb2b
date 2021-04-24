@@ -59,7 +59,7 @@ export class ModalNotificationDetailPage implements OnInit {
       response=>{
       console.log(response);
       console.log("mira marico aqui entramos wn qlq");
-      //console.log(this.contacts.email);
+      console.log(this.contacts.email);
  
       if(response = null){
         alert(" el usuario no existe");
